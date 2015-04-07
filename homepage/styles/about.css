@@ -1,0 +1,15 @@
+.about {
+    position: absolute;
+    width: 70%;
+    left: 200px;
+}
+
+p {
+    font-size: 16px;
+}
+
+.images {
+    position: absolute;
+    left: 200px;
+    top: 450px;
+}

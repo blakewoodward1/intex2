@@ -1,0 +1,30 @@
+<%inherit file="base.htm" />
+
+<%block name = "title">
+	Login
+</%block>
+
+<%block name="content">
+
+	<html>
+		<body>
+		<br><br><br><br>
+		<div class="everything text-center">
+		<img class="displayed" src="${ STATIC_URL }homepage/media/CHF_Logo.png" alt="Flag" width="400px"><br>
+
+			<form method='POST'>
+				<table>
+				${form}
+				</table><br>
+				<input type='Submit' />
+			</form>
+		<a href ='/account/forgot'>Forgot your password?</a>
+		</div>
+		</body>
+	</html>
+
+</%block>
+
+<%block name = "header">
+	Contact the Colonial Heritage Foundation
+</%block>

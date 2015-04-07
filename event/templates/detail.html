@@ -1,0 +1,72 @@
+<%inherit file="/homepage/templates/base.htm" />
+
+<%block name = "title">
+Event Details	
+</%block>
+
+<%block name="content">
+<br><br><br>
+
+<div class="main">
+
+<title>${event.name}</title>
+<meta name="keywords" content="${event.name}">
+
+<h1>${event.name}<small> &nbsp&nbsp&nbsp${event.startDate}</small></h1>
+  <img src="${STATIC_URL}event/media/images/${event.id}.png" alt="${event.name}"/>
+</div>
+
+%if request.user.has_perm(True):
+<div class="admin-functions">
+<p>You are Admin, you can:
+<a href="/homepage/event_details.edit/${event.id}">Edit</a> |
+<a href="/homepage/event_details.delete/${event.id}">Delete</a></p>
+</div>
+%endif
+
+<div class="details">
+	<table class = "table table-condensed">
+  <tr>
+    <th><p>Event Name</p></th>
+    <td><p>${event.name}</p></td>
+  </tr>
+  <tr>
+    <th><p>Start Date</p></th>
+    <td><p>${event.startDate}</p></td>
+  </tr>
+  <tr>
+    <th><p>End Date</p></th>
+    <td><p>${event.endDate}</p></td>
+  </tr>
+  <tr>
+    <th><p >Location:</p></th>
+    <td><a href="https://www.google.com/maps/place/" target="_blank"><p>Salt Lake City</p></a></td>
+  </tr>
+  <tr>
+    <th><p>Description:</p></th>
+    <td><p>${event.description}</p></td>
+  </tr>
+  </table>
+
+  <div id = 'sponsered_products'>
+	<table>
+		<tr><td><h4>Sponsored Products</h4></td></tr>
+		<tr><td>
+			%for product in products:
+				<div class = 'product_container'>
+					<a href ='/catalog/detail/${product.id}'>
+						<img src='${STATIC_URL}catalog/media/product_images/${product.id}.png' />
+						<div>
+						<p>${product.name}</p></div>
+					</a>
+				</div>
+			%endfor
+		</td></tr>
+	</table>
+
+
+
+</div>
+
+
+</%block>

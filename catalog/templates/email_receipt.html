@@ -1,0 +1,59 @@
+<img src="http://2.bp.blogspot.com/-Al9-SWLlHdo/UmGvQhcFQqI/AAAAAAAAACk/mBRacWRhQSw/s400/logoH2.png" />
+<p>
+Hello ${user.first_name}
+</p>
+<p>
+Thank you for shopping with us.  Your products will arrive in a few days.  
+</p>
+
+<table style='border: solid 1px black'>
+<tr style='border: solid 1px black'>
+	<th span=3>Order Receipt</th>
+</tr>
+<tr style='border: solid 1px black'>
+	<td>Item Number</td>
+	<td>Quantity</td>
+	<td>Item</td>
+	<td>Price per Unit</td>
+	<td>Total</td>
+</tr>
+<%TP = 0%>
+%for item in cart:
+	<tr style='border: solid 1px black'>
+		<td>${item}</td>
+		<td> ${ request.session['shopping_cart'][item][0] }</td>
+		
+		%for product in all_items:
+			% if not str(product.id)  == item:
+				
+			%else:
+				<td>${product.name}</td>
+				<td>$${product.price}</td>
+				%if product.isRental:
+					<td>${product.price * int(request.session['shopping_cart'][item][0]) * int(request.session['shopping_cart'][item][1]) }</td>
+					<%TP = TP+ product.price * int(request.session['shopping_cart'][item][0]) * int(request.session['shopping_cart'][item][1])%>
+				%else:
+					<td>${product.price * int(request.session['shopping_cart'][item][0])}</td>
+					<%TP = TP+ product.price * int(request.session['shopping_cart'][item][0])%>
+				%endif
+
+
+			%endif
+		%endfor
+
+
+	</tr>
+
+
+%endfor
+<tr id='total_cost'>
+	<td></td><td></td><td></td><td>Total:</td><td>${TP}</td>
+</tr>
+</table>
+
+
+
+
+<p>
+	If you didn't request this code, please contact us at support@chfgroup.us.
+</p>

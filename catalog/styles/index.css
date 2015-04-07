@@ -1,0 +1,35 @@
+.item_container {
+	
+	display: inline-block;
+	margin: 10px;
+	border: 1px solid black;
+	padding: 4px;
+
+
+}
+
+.item_container > a >  img {
+	
+	max-height:  150px;
+	max-width: 150px;
+}
+
+.showfloor {
+	width: 95%;
+	left: 40px;
+	position: absolute;
+	background-color: #CFCFCF;
+	padding: 10px;
+	top: 285px;
+}
+
+.jumbotron{
+	display: inline-block;
+	width: 95%;
+	position: relative;
+	left: 35px;
+	padding: 20px;
+	background-color: #27556C;
+	margin: 5px;
+	color: #E6E6E6;	
+}

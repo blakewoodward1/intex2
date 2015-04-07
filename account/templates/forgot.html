@@ -1,0 +1,65 @@
+<%inherit file="/homepage/templates/base.htm" />
+<%block name = "title">
+	Forgot My Password
+</%block>
+
+
+<%block name="content">
+
+
+
+<script>
+function myFunction() {
+    console.log("An email has been sent, please check your inbox!");
+}
+</script>
+<br><br><br>
+
+
+%if status == 'sent':
+	<h2> An email has been sent to your address</h2>
+
+
+
+
+
+%elif status == 'new_password':
+	<h2> You have gotten to the change your password page</h2>
+		<form method='POST' id='passwordForm' action='/account/forgot.changePW/${userid}/${hash}' >
+		<table>
+					${form}
+
+		</table>
+		<input type="submit" />
+	</form>		
+
+
+
+
+
+
+
+%elif status =='bad_hash':
+	<h2> Bad URL</h2>
+
+%elif status == 'bad_user':
+	<h2> User does not exist</h2>
+
+%else:
+	<div class="text-center">
+		<h1>Forgot your password?<small> No Problem</small></h1>
+
+		<p>Enter your username and we will send you a link to reset your password.</p>
+
+				<form method='POST' action='/account/forgot.reset/'> 
+					${form}
+					<br>
+					<div class="button"><br>
+					<input type='Submit' onclick="myFunction()"/>
+					</div>
+				</form>	
+	</div>
+%endif
+
+
+</%block>

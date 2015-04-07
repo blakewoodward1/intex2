@@ -1,0 +1,56 @@
+<%inherit file="base.htm" />
+
+<%block name = "title">
+	Wardrobe Items
+</%block>
+
+<%block name="content">
+
+	<html>
+		<body>
+			<h2> Wardrobe Items</h2>
+			<div class = "text-right">
+				<a href="/homepage/wardrobe.create/" class ="btn btn-warning">
+				 Create New Wardrobe Item</a>
+			</div>
+			<br>
+			<table class="table table-striped table-bordered">
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Size</th>
+					<th>Modifier Name</th>
+					<th>Gender</th>
+					<th>Color</th>	
+					<th>Pattern</th>				
+					<th>Start Date</th>
+					<th>Actions</th>
+
+				</tr>			
+				%for wardrobe in all_wardrobe:
+
+					<tr>
+						<td>${wardrobe.id}</td>
+						<td>${wardrobe.name}</td>
+						<td>${wardrobe.size}</td>
+						<td>${wardrobe.sizeModifier}</td>
+						<td>${wardrobe.gender}</td>
+						<td>${wardrobe.color}</td>
+						<td>${wardrobe.pattern}</td>
+						<td>${wardrobe.start_year}</td>
+						<td><a href="/homepage/wardrobe.edit/${wardrobe.id}/">Edit</a>
+						|
+						 <a href='/homepage/wardrobe.delete/${wardrobe.id}/'>Delete</a></td>
+
+					</tr>
+				%endfor
+
+			</table>
+
+	</html>
+
+</%block>
+
+<%block name = "header">
+	Contact the Colonial Heritage Foundation
+</%block>

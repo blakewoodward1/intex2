@@ -1,0 +1,20 @@
+td {
+	padding:5px;
+	border: solid black 1px;
+	font-size: 18px;
+}
+
+#total_cost{
+	border-top: 2px solid black;
+}
+
+#total_cost td{
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.everything {
+	position: absolute;
+  	left: 350px;
+	font-family: Baskerville, "Baskerville Old Face", "Goudy Old Style", Garamond, "Times New Roman", serif;
+}

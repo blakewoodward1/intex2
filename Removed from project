@@ -1,0 +1,11 @@
+
+
+
+rentals.py
+@view_function
+def query(request):
+	params = {}
+
+	params['rentableitems'] = hmod.RentableItem.objects.raw('SELECT * from homepage_RentableItem WHERE due_date < NOW()')
+
+	return templater.render_to_response(request, 'rentableitems.html', params)

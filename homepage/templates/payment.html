@@ -1,0 +1,74 @@
+<%inherit file="/homepage/templates/base.htm" />
+
+<%block name = "title">
+  Billing and Checkout
+</%block>
+
+
+  <head>
+    <title>REST API Example</title> 
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  </head>
+
+<%block name="content">
+<h1> Checkout</h1>
+
+<div id='shopping_cart'>
+
+</div>
+
+
+<input type="text" name="CCN" id='chargeId' value="${fees}" style='display: none'>
+
+
+<div id='billing_info'>
+	<table>
+		<tr>
+			<td> Credit card number </td>
+			<td> <input type="text" name="CCN"  value="4732817300654"></td>
+		</tr>
+		<tr>
+			<td> CVC Nuber </td>
+			<td> <input type="text" value ='411'></td>
+		</tr>
+		<tr>
+			<td> Billing Address </td>
+			<td> <input type="text" value = 'test'></td>
+		</tr>
+		<tr>
+			<td> City </td>
+			<td> <input type="text"></td>
+		</tr>		
+		<tr>
+			<td> State </td>
+			<td> <input type="text"></td>
+		</tr>
+		<tr>
+			<td> ZIP </td>
+			<td> <input type="text"></td>
+		</tr>
+		<tr>
+			<td> Name </td>
+			<td> <input type="text"></td>
+		</tr>
+		<tr>
+			<td> Phone number </td>
+			<td> <input type="text"></td>
+		</tr>
+		<tr>
+			<td>
+				<a href="#" class='btn btn-warning' id='charge' style='font-size:1.25em;'>Place Order</a>
+
+    <br/>
+    <div id="message"></div> 
+	</table>
+
+</div>
+
+
+
+
+</%block>

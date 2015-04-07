@@ -1,0 +1,84 @@
+<%inherit file="/homepage/templates/base_ajax.htm" />
+<%block name="content">
+<%! import datetime as dt %> <!-- ! -->
+<h2>Products</h2>
+<table class="table">
+	<tr> 
+		<th>Item ID</th>
+		<th>Image</th>
+		<th>Quantity</th>
+
+		<th>Total</th>
+		<th></th>
+	</tr>
+	%for item in cart:
+		<tr>			
+			%for product in all_items:
+				% if not str(product.id)  == item:
+					
+				%else:
+					%if not product.isRental:
+						<td>${item}</td>
+						<td>
+							<img src="${STATIC_URL}catalog/media/product_images/${item}.png" />
+						</td>
+						<td>
+							 ${ request.session['shopping_cart'][item][0] }
+						</td>
+
+						<td>$${product.price * int(request.session['shopping_cart'][item][0])}</td>
+						<td>
+							<button class='delete btn btn-danger' data-pid='${item}'>Remove from cart</button>
+						
+						</td>
+					%endif
+				%endif
+			%endfor
+			
+			
+		</tr>
+	%endfor
+</table>
+
+
+<h2>Rentals</h2>
+<table class="table">
+	<tr> 
+		<th>Item ID</th>
+		<th>Image</th>
+		<th>Quantity</th>
+		<th>Due Date</th>
+		<th>Total</th>
+		<th></th>
+	</tr>
+	%for item in cart:
+		<tr>			
+			%for product in all_items:
+				% if not str(product.id)  == item:
+					
+				%else:
+					%if product.isRental:
+						<td>${item}</td>
+						<td>
+							<img src="${STATIC_URL}catalog/media/product_images/${item}.png" />
+						</td>
+						<td>
+							 ${ request.session['shopping_cart'][item][0] }
+						</td>
+						<td>${dt.date.today() + dt.timedelta(days=int(request.session['shopping_cart'][item][1]))}</td>
+						<td>$${product.price * int(request.session['shopping_cart'][item][0]) * int(request.session['shopping_cart'][item][1])}</td>
+						<td>
+							<button class='delete btn btn-danger' data-pid='${item}'>Remove from cart</button>
+						</td>
+					%endif
+				%endif
+			%endfor
+		</tr>
+	%endfor
+</table>
+
+<p><a href='/catalog/' class='btn btn-primary'>Continue Shopping</a>
+
+<a href='/catalog/checkout/' class='btn btn-warning'>Check out</a></p>
+
+</%block>

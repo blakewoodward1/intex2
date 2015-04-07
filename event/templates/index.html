@@ -1,0 +1,41 @@
+<%inherit file="/homepage/templates/base.htm" />
+
+<%block name = "title">
+  Events and Festivals
+</%block>
+
+<%block name="content">
+<br><br><br>
+
+<title>Events</title>
+
+<div class="jumbotron">
+  <h1 >Upcoming Events</h1>
+  <p >Eum clita partem admodum ea, vel et nibh aliquam. Cu nam probo option, ei inani euismod maluisset ius. Graeci percipit has eu. Nisl nulla appareat usu cu, ei iusto quidam nam, doctus incorrupte vel ad. Graece libris prodesset vel eu, ne homero latine posidonium his.</p>
+
+</div>
+
+<div class="showfloor text-center">
+
+%if len(list(all_event))>0:
+	%for event in all_event:
+	<div class="item_container text-center">
+
+		<a href="/event/detail/${event.id}"><img class="hvr-glow" src="${STATIC_URL}event/media/images/${event.id}.png" /></a>
+
+		<div>
+		<div>
+		<h3 style="color: #5C5959">${event.name}</h3>
+		<h3 style="color: #5C5959">${event.startDate}</h3>
+		</div>
+		</div>
+	</div>
+	%endfor
+%else:
+	<h1>Sorry, there are no events</h1>
+%endif:
+</div>
+
+
+
+</%block>

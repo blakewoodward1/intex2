@@ -1,0 +1,70 @@
+<%inherit file="/homepage/templates/base.htm" />
+<%block name = "title">
+ 	Thank you!
+</%block>
+
+
+<%block name="content">
+<br><br><br>
+
+<div class="everything">
+<h1 class="text-center"> Thank You!</h1>
+<p>A copy of this receipt has been sent to your email. Please keep a copy for your own records.</p>
+<table>
+<tr>
+	<th span=3>Order Receipt</th>
+</tr>
+<tr>
+	<td>Item Number</td>
+	<td>Quantity</td>
+	<td>Item</td>
+	<td>Price per Unit</td>
+	<td>Total</td>
+</tr>
+<%TP = 0%>
+%for item in cart:
+	<tr>
+		<td>${item}</td>
+		<td> ${ request.session['shopping_cart'][item][0] }</td>
+		
+		%for product in all_items:
+			% if not str(product.id)  == item:
+				
+			%else:
+				<td>${product.name}</td>
+				<td>$${product.price}</td>
+				%if product.isRental:
+					<td>$${product.price * int(request.session['shopping_cart'][item][0]) * int(request.session['shopping_cart'][item][1]) }</td>
+					<%TP = TP+ product.price * int(request.session['shopping_cart'][item][0]) * int(request.session['shopping_cart'][item][1])%>
+				%else:
+					<td>$${product.price * int(request.session['shopping_cart'][item][0])}</td>
+					<%TP = TP+ product.price * int(request.session['shopping_cart'][item][0])%>
+				%endif
+
+
+			%endif
+		%endfor
+
+
+	</tr>
+
+
+%endfor
+<tr id='total_cost'>
+	<td></td><td></td><td></td><td>Total:</td><td>$${TP}</td>
+</tr>
+</table>
+<br>
+<a href="/catalog/" class="btn btn-primary">Return to Products</a>
+
+</div>
+
+<%  
+	del request.session['shopping_cart']
+	if 'shopping_cart' not in request.session:
+		request.session['shopping_cart'] = {}
+		request.session.modified=True
+
+%>
+
+</%block>

@@ -1,0 +1,156 @@
+## this is the skeleton of all pages on in this app - it defines the basic html tags
+
+## set up a StaticRenderer object to enable the CSS/JS automatic inclusion magic.
+<%! from django_mako_plus.controller import static_files %>
+<%  static_renderer = static_files.StaticRenderer(self) %>
+
+<!DOCTYPE html>
+<html>
+
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Website for the COlonial Heritage Foundation">
+    <meta name="keywords" content="Colonial Heritage Foundation, CHF, Festival">
+    <meta name="author" content="shoopes2">
+      
+    <title>
+      <%block name = "title">
+        Colonial Heritage Foundation
+      </%block>
+    </title>
+    
+    ## add any site-wide scripts or CSS here; for example, jquery:
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="${ STATIC_URL}homepage/media/jquery.form.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+     <link rel="icon" href="${ STATIC_URL }favicon.ico" type="image/x-icon">
+    <script src="${ STATIC_URL}homepage/scripts/loadmodal.js"></script>
+    <script src="${ STATIC_URL}catalog/scripts/shopping_cart.js"></script>  
+
+    ## render the css with the same name as this page
+    ${ static_renderer.get_template_css(request, context)  }
+     ## render the JS with the same name as this page
+    ${ static_renderer.get_template_js(request, context)  }
+  
+  </head>
+  <body>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-51767348-3', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-header">
+    <a class="navbar-brand" href="/homepage/index#">Home</a>
+  </div>
+  <div class="navbar-collapse collapse navbar-inverse-collapse">
+    <ul class="nav navbar-nav">
+      <li><a href="/homepage/about#">About</a></li>
+      <li><a href="/event/">Events</a></li>
+      <li><a href="/catalog#">Products</a></li>
+      <li><a href="/homepage/contact#">Contact</a></li>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" id='keywords' class="form-control" placeholder="Products & Rentals">
+        </div>
+        <a href='#' id='keywordBtn' class="btn btn-default">Search</a>
+      </form>
+    </ul>
+  <div class="navbar-collapse collapse navbar-inverse-collapse">
+    <ul class="nav navbar-nav navbar-right">
+
+    %if request.user.is_authenticated():
+      <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Welcome, ${ request.user.get_full_name() }<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="/account"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Account Info</a></li>
+              
+
+              %if request.user.has_perm(True):
+              <li><a href="/account/admin#"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Admin</a></li>
+              %else:
+              <li class="divider"></li>
+              %endif
+      
+              <li><a href="/homepage/login.logout_view/"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Logout</a></li>
+            </ul>
+          </li>
+    %else:
+      <li><a href="/account/edit.create#"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create Account</a></li>
+      <li><a id='show_login_dialog' href='#'> Log in <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></a></li>
+    %endif
+
+    </ul>
+  </div>
+  </div>
+</div>
+
+
+      <!-- Modal -->
+      <div class="modal fade" id="login_dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Login</h4>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>-->
+            </div>
+          </div>
+        </div>
+      </div>
+
+<!-- Modal -->
+      <div class="modal fade" id="add_to_cart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Login</h4>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class=" btn btn-primary">Save changes</button>-->
+            </div>
+          </div>
+        </div></div>  
+
+
+
+
+       <!-- <li><a href = '/homepage/login'>Login2</a>-->
+
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+      <%block name="content"> 
+       <br><br>
+      </%block>
+
+        </div>
+    </div>
+  </body>
+
+</html>

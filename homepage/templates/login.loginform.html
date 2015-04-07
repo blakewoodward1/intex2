@@ -1,0 +1,13 @@
+<%inherit file="/homepage/templates/base_ajax.htm" />
+
+<%block name="content">
+<img class="displayed text-center" src="${ STATIC_URL }homepage/media/CHF_Logo.png" alt="Flag" width="400px">
+	<form method='POST' id='loginform' action='/homepage/login.loginform/' >
+		<table class="text-center">
+			${form}
+		</table>
+		<input type="submit" />
+	</form>		<br>
+	<p><a href ='/account/forgot'>Forgot your password?</a></p>
+
+</%block>

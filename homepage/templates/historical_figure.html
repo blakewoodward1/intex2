@@ -1,0 +1,59 @@
+<%inherit file="base.htm" />
+
+<%block name = "title">
+	Historical Figures
+</%block>
+
+<%block name="content">
+
+	<html>
+		<body>
+			<h2> Historical Figures</h2>
+
+
+			<div class = "text-right">
+				<a href="/homepage/historical_figure.create/" class ="btn btn-warning">
+				 Create New Historical Figure</a>
+			</div>
+			<br>
+
+			<table class="table table-striped table-bordered">
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Birth Date</th>
+					<th>Birth Place</th>
+					<th>Death Date</th>	
+					<th>Death Place</th>				
+					<th>Biographical Note</th>
+					<th>Fictional</th>
+					<th>Actions</th>
+
+				</tr>			
+				%for figure in all_figure:
+
+					<tr>
+						<td>${figure.id}</td>
+						<td>${figure.name}</td>
+						<td>${figure.birth_date}</td>
+						<td>${figure.birth_place}</td>
+						<td>${figure.death_date}</td>
+						<td>${figure.death_place}</td>
+						<td>${figure.biographical_note}</td>
+						<td>${figure.is_fictional}</td>
+						<td><a href="/homepage/historical_figure.edit/${figure.id}/">Edit</a>
+						|
+						 <a href="/homepage/historical_figure.delete/${figure.id}/">Delete</a></td>
+
+					</tr>
+				%endfor
+
+			</table>
+
+	</html>
+
+</%block>
+
+<%block name = "header">
+	Contact the Colonial Heritage Foundation
+</%block>

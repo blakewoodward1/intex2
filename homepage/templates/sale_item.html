@@ -1,0 +1,51 @@
+<%inherit file="base.htm" />
+
+<%block name = "title">
+	Products & Rentals
+</%block>
+
+<%block name="content">
+
+	<html>
+		<body>
+			<h2>Sale Items</h2>
+			<div class = "text-right">
+				<a href="/homepage/sale_item.create/" class ="btn btn-warning">
+				 Create New Sale Item</a>
+			</div>
+			<br>
+			
+			<table class="table table-striped table-bordered">
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Description</th>
+					<th>Low Price</th>
+					<th>High Price</th>
+					<th>Actions</th>
+
+				</tr>			
+				%for sale in all_sale:
+
+					<tr>
+						<td>${sale.id}</td>
+						<td>${sale.name}</td>
+						<td>${sale.description}</td>
+						<td>${sale.low_price}</td>
+						<td>${sale.high_price}</td>
+						<td><a href="/homepage/sale_item.edit/${sale.id}/">Edit</a>
+						|
+						 <a href = '/homepage/sale_item.delete/${sale.id}/'>Delete</a></td>
+
+					</tr>
+				%endfor
+
+			</table>
+
+	</html>
+
+</%block>
+
+<%block name = "header">
+	Contact the Colonial Heritage Foundation
+</%block>

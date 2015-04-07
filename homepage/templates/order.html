@@ -1,0 +1,55 @@
+<%inherit file="base.htm" />
+
+<%block name = "title">
+	Orders
+</%block>
+
+<%block name="content">
+
+	<html>
+		<body>
+			<h2> All Orders</h2>
+			<div class = "text-right">
+				<a href="/homepage/order.create/" class ="btn btn-warning"> Create New Order</a>
+			</div>
+			<br>
+			<table class="table table-striped table-bordered">
+				<tr>
+					<th>ID</th>
+					<th>Order Number</th>
+					<th>Order Date</th>
+					<th>Phone</th>
+					<th>Date Packed</th>	
+					<th>Date Paid</th>				
+					<th>Date Shipped</th>
+					<th>Tracking Number</th>
+					<th>Actions</th>
+
+				</tr>			
+				%for order in all_order:
+
+					<tr>
+						<td>${order.id}</td>
+						<td>${order.OrderNumber}</td>
+						<td>${order.orderDate}</td>
+						<td>${order.Phone}</td>
+						<td>${order.datePacked}</td>
+						<td>${order.datePaid}</td>
+						<td>${order.dateShipped}</td>
+						<td>${order.trackingNumber}</td>
+						<td><a href="/homepage/order.edit/${order.id}/">Edit</a>
+						|
+						 <a href='/homepage/order.delete/${order.id}/'>Delete</a></td>
+
+					</tr>
+				%endfor
+
+			</table>
+
+	</html>
+
+</%block>
+
+<%block name = "header">
+	Contact the Colonial Heritage Foundation
+</%block>
